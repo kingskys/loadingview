@@ -16,7 +16,6 @@ public class LoadingView extends LinearLayout {
     private ProgressBar progressBar;
     private TextView tv;
     private ImageView iv;
-    private Context context;
 
     public LoadingView(Context context) {
         this(context, null);
@@ -27,12 +26,15 @@ public class LoadingView extends LinearLayout {
     }
 
     public LoadingView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        this.context = context;
-        init();
+        this(context, attrs, defStyleAttr, 0);
     }
 
-    private void init() {
+    public LoadingView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+        init(context);
+    }
+
+    private void init(Context context) {
         View view = LayoutInflater.from(context).inflate(R.layout.loading_view, this, true);
         progressBar = view.findViewById(R.id.progressBar);
         tv = findViewById(R.id.tv);
